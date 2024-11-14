@@ -22,10 +22,8 @@ public class UsuarioDao implements IUsuarioDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setId(rs.getLong("id"));
                 usuario.setNombre(rs.getString("nombre"));
                 usuario.setEmail(rs.getString("email"));
-                usuario.setEdad(rs.getInt("edad"));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
@@ -44,24 +42,23 @@ public class UsuarioDao implements IUsuarioDao {
     @Override
     public boolean agregarUsuarios(Usuario usuario) {
 
-        String sql = "INSERT INTO usuarios" +
-                "(nombre, email, edad, apellido, usuario,genero,password,preguntaDeSeguridad," +
-                "respuestaDeSeguridad,phone,fechaDeNacimiento) " +
-                "VALUES(?, ?, ?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Usuario" +
+                "(nombre, email, apellido, username,genero,password,pregunta_de_seguridad," +
+                "respuesta_de_seguridad,phone,fecha_de_nacimiento) " +
+                "VALUES(?, ?, ?,?,?,?,?,?,?,?)";
         Connection connection = getConnection();
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getEmail());
-            ps.setInt(3, usuario.getEdad());
-            ps.setString(4, usuario.getApellido());
-            ps.setString(5, usuario.getUsuario());
-            ps.setString(6, usuario.getGenero());
-            ps.setString(7, usuario.getPassword());
-            ps.setString(8, usuario.getPreguntaDeSeguridad());
-            ps.setString(9, usuario.getRespuestaDeSeguridad());
-            ps.setLong(10,usuario.getPhone());
-            ps.setDate(11, Date.valueOf(usuario.getFechaDeNacimiento()));
+            ps.setString(3, usuario.getApellido());
+            ps.setString(4, usuario.getUsuario());
+            ps.setString(5, usuario.getGenero());
+            ps.setString(6, usuario.getPassword());
+            ps.setString(7, usuario.getPreguntaDeSeguridad());
+            ps.setString(8, usuario.getRespuestaDeSeguridad());
+            ps.setLong(9,Long.parseLong(usuario.getPhone()));
+            ps.setDate(10, Date.valueOf(usuario.getFechaDeNacimiento()));
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -70,7 +67,7 @@ public class UsuarioDao implements IUsuarioDao {
             try {
                 connection.close();
             } catch (Exception e) {
-                System.out.println("Error al intentar cerrar la conexion " + e.getMessage());
+                System.out.println("Error al intentar cerrar la conexion para agg " + e.getMessage());
             }
         }
 

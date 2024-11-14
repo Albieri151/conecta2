@@ -14,25 +14,25 @@ public class UsuarioController {
 
     @RequestMapping(value = "Ami/{id}")
     public Usuario prueba(@PathVariable Long id){
-        return new Usuario(id,"Albieri", "Reyes","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", Long.parseLong("04126146850"),
-                LocalDate.parse("2002-09-12"));
+        return new Usuario(11L,"Albieri", "Reyes","Albis400","M","Albieri@gmail.com",
+                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
+               "2002-09-12");
     }
 
     @RequestMapping(value = "Amigos")
     public List<Usuario> prueba(){
 
-        Usuario usuario1 = new Usuario(11L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", Long.parseLong("04126146850"),
-                LocalDate.parse("2002-12-09"));
+        Usuario usuario1 = new Usuario(12L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
+                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
+               "2002-12-09");
 
-        Usuario usuario2 = new Usuario(12L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", Long.parseLong("04126146850"),
-                LocalDate.parse("2002-09-12"));
+        Usuario usuario2 = new Usuario(13L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
+                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
+               "2002-09-12");
 
-        Usuario usuario3 = new Usuario(13L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", Long.parseLong("04126146850"),
-                LocalDate.parse("2002-09-12"));
+        Usuario usuario3 = new Usuario(14L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
+                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
+                "2002-09-12");
         List<Usuario> listaUsers = new ArrayList<>();
         listaUsers.add(usuario1);
         listaUsers.add(usuario2);

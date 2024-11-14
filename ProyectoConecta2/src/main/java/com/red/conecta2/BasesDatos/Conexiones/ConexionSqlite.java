@@ -9,7 +9,7 @@ public class ConexionSqlite {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/Conecta2.db");
         } catch (Exception e) {
-            System.out.println("Error al intentar conectarte a la base de datos " + e.getMessage());
+            System.out.println("Error al intentar conectarte a la base de datos jodete" + e.getMessage());
         }
         return connection;
     };

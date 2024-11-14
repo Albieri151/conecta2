@@ -14,14 +14,13 @@ public class Usuario {
     private String password;
     private String preguntaDeSeguridad;
     private String respuestaDeSeguridad;
-    private Long phone;
-    private LocalDate fechaDeNacimiento;
-    private Integer edad;
+    private String phone;
+    private String fechaDeNacimiento;
 
     public Usuario(){};
 
     public Usuario(Long id, String nombre, String apellido, String usuario, String genero, String email, String password,
-                   String preguntaDeSeguridad, String respuestaDeSeguridad, Long phone, LocalDate fechaDeNacimiento) {
+                   String preguntaDeSeguridad, String respuestaDeSeguridad, String phone, String fechaDeNacimiento) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -33,15 +32,7 @@ public class Usuario {
         this.respuestaDeSeguridad = respuestaDeSeguridad;
         this.phone = phone;
         this.fechaDeNacimiento = fechaDeNacimiento;
-        this.edad = calcularEdad(fechaDeNacimiento);
-    }
 
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
     }
 
     public String getNombre() {
@@ -100,19 +91,19 @@ public class Usuario {
         this.preguntaDeSeguridad = preguntaDeSeguridad;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public LocalDate getFechaDeNacimiento() {
+    public String getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
+    public void setFechaDeNacimiento(String fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
