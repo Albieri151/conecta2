@@ -17,6 +17,7 @@ public class Usuario {
     private String phone;
     private String fechaDeNacimiento;
 
+
     public Usuario(){};
 
     public Usuario(Long id, String nombre, String apellido, String usuario, String genero, String email, String password,
@@ -32,7 +33,6 @@ public class Usuario {
         this.respuestaDeSeguridad = respuestaDeSeguridad;
         this.phone = phone;
         this.fechaDeNacimiento = fechaDeNacimiento;
-
     }
 
     public String getNombre() {

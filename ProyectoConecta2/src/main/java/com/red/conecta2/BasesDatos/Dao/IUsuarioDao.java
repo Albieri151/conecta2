@@ -6,8 +6,10 @@ import java.util.List;
 
 public interface IUsuarioDao {
     List<Usuario> listarUsuarios();
-    boolean agregarUsuarios(Usuario usuario);
+    void agregarUsuarios(Usuario usuario);
     boolean eliminarUsuario(Usuario usuario);
     boolean actualizarUsuario(Usuario usuario);
-    boolean buscarUsuarioId(Usuario usuario);
+    Usuario loguearUsuario(Usuario usuario);
+    Usuario buscarUsuario(Usuario usuario);
+    Usuario recuperarPassword(Usuario usuario);
 }

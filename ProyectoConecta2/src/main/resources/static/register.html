@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Conecta2 - Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -60,9 +60,9 @@
                                         style= "max-width: 100%;border-radius: 10rem;" required>
 
                                             <option value="" disabled selected>Select your gender</option>
-                                            <option value="Man">Masculino</option>
-                                            <option value="Women">Femenino</option>
-                                            <option value="Other">Otro</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Otro">Otro</option>
                                         </select>
                                     </div>
                                 </div>
@@ -95,8 +95,10 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="date" class="form-control form-control-user" id="txtFechaNacimiento"
-                                               name="nacer" required >
+                                               name="nacer" max="" required >
                                     </div>
+
+
                                 </div>
                                 <a onclick="registro()" href="#" class="btn btn-primary btn-user btn-block" id="registroUser">
                                     Register Account
@@ -105,7 +107,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <a class="small" href="recuperarContraseña.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="login.html">Already have an account? Login!</a>
