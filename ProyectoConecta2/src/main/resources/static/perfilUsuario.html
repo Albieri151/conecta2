@@ -9,20 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Conectate - Amigos</title>
+    <title>Conecta2 - Mi perfil</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -60,7 +57,7 @@
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="Friends.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Siguiendo</span></a>
@@ -69,7 +66,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="perfilUsuario.html"
+                <a class="nav-link collapsed" href="#"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Mi perfil</span>
@@ -97,20 +94,17 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" id="search-input" class="form-control bg-light border-0 small" placeholder="Buscar en Conecta"
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" id="search-input" class="form-control bg-light border-0 small" placeholder="Buscar en Conecta" aria-label="Buscar" aria-describedby="basic-addon2">
+                            <div id="search-results" class="search-results-container"></div>
                         </div>
-                        <div id="search-results" class="search-results-container"></div>
                     </form>
 
                     <!-- Topbar Navbar -->
@@ -161,10 +155,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Siguiendo
                                 </a>
-                                <a class="dropdown-item" href="Notificaciones.html">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Notificaciones
-                                </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -180,39 +171,54 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Siguiendo</h1>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="listadoAmigos" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>User Name</th>
-                                            <th>First and last name</th>
-                                            <th>Email</th>
-                                            <th>Age</th>
-                                            <th>Phone number</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                    <div class="container">
+                        <div class="npc-card">
+                            <div class=".npc-image">
+                                <img src="./img/conectaLogin.jpg"
+                                     style= "width: 100%;height: 100%;border-radius: 1.5rem;"/>
+                            </div>
+                            <div class="stats">
+                                <div class="stat">
+                                    <span id="seguidos" class="number">0</span>
+                                    <p>Siguiendo</p>
+                                </div>
+                                <div class="stat">
+                                    <span id="seguidores" class="number">0</span>
+                                    <p>Seguidores</p>
+                                </div>
+                                <div class="stat">
+                                    <span id="publicaciones" class="number">0</span>
+                                    <p>Publicaciones</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="profile-form">
+                            <h3>Editar Perfil</h3>
+                            <form>
+                                <input type="text" class="form-control form-control-user" placeholder="Nombre">
+                                <input type="text" class="form-control form-control-user" placeholder="Apellido">
+                                <select class="form-control form-control-user" id="txtGenero">
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <input type="email" class="form-control form-control-user" placeholder="Email">
+                                <input type="text" class="form-control form-control-user" placeholder="Username">
+                                <input type="password" class="form-control form-control-user" placeholder="Password">
+                                <input type="text" class="form-control form-control-user" placeholder="Pregunta de seguridad">
+                                <input type="text" class="form-control form-control-user" placeholder="Respuesta de seguridad">
+                                <input type="date" id="txtDate" class="form-control form-control-user" placeholder="Fecha de nacimiento">
+                                <input type="tel" id="telf" class="form-control form-control-user" placeholder="Teléfono">
+                                <button type="submit" class="form-control form-control-user">Actualizar perfil</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
-
+                <div id="publicaciones-container"></div>
             </div>
             <!-- End of Main Content -->
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -223,8 +229,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
-
 
         </div>
         <!-- End of Content Wrapper -->
@@ -266,17 +270,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/listaAmigos.js"></script>
+    <script src="js/miPerfil.js"></script>
     <script src="js/barraBusqueda.js"></script>
-
-
-
+    <script src="js/publicacionesDinamicasMiPerfil.js"></script>
 </body>
 
 </html>

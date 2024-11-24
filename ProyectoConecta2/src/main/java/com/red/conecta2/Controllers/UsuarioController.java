@@ -1,45 +1,80 @@
 package com.red.conecta2.Controllers;
 
+import com.red.conecta2.BasesDatos.Dao.UsuarioDao;
 import com.red.conecta2.Models.Usuario;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDate;
+import com.red.conecta2.Utils.JWTUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class UsuarioController {
 
-    @RequestMapping(value = "Ami/{id}")
-    public Usuario prueba(@PathVariable Long id){
-        return new Usuario(11L,"Albieri", "Reyes","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
-               "2002-09-12");
+    @Autowired
+    private JWTUtil jwtUtil;
+
+    @RequestMapping(value = "api/miPerfil", method = RequestMethod.GET)
+    public Usuario getPerfil(@RequestHeader(value = "Authorization") String token){
+        String idUsuarioLogueado = jwtUtil.getKey(token);
+        UsuarioDao usuarioDao = new UsuarioDao();
+        return usuarioDao.buscarUsuario(Long.parseLong(idUsuarioLogueado));
     }
 
-    @RequestMapping(value = "Amigos")
-    public List<Usuario> prueba(){
-
-        Usuario usuario1 = new Usuario(12L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
-               "2002-12-09");
-
-        Usuario usuario2 = new Usuario(13L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
-               "2002-09-12");
-
-        Usuario usuario3 = new Usuario(14L,"Albieri", "Alaña","Albis400","M","Albieri@gmail.com",
-                "Pedrito3030", "Chupa el perro", "Chupatelo", "04126146850",
-                "2002-09-12");
-        List<Usuario> listaUsers = new ArrayList<>();
-        listaUsers.add(usuario1);
-        listaUsers.add(usuario2);
-        listaUsers.add(usuario3);
-
-        return listaUsers;
+    @RequestMapping(value = "api/seguidores", method = RequestMethod.POST)
+    public List<Usuario> getSeguidores(@RequestHeader(value = "Authorization") String token){
+        String idUsuarioLogueado = jwtUtil.getKey(token);
+        UsuarioDao usuarioDao = new UsuarioDao();
+        if (idUsuarioLogueado == null){
+            return new ArrayList<>();
+        }
+        return usuarioDao.listaSeguidos(Long.parseLong(idUsuarioLogueado));
     }
+
+    @RequestMapping(value = "api/miPerfil", method = RequestMethod.PUT)
+    public void actualizarPerfil(@RequestHeader(value = "Authorization") String token,
+                                 @RequestBody Usuario usuario){
+        String idUsuarioLogueado = jwtUtil.getKey(token);
+        UsuarioDao usuarioDao = new UsuarioDao();
+        if (idUsuarioLogueado == null){
+            return;
+        }
+        usuario.setId(Long.parseLong(idUsuarioLogueado));
+        usuarioDao.actualizarUsuario(usuario);
+    }
+
+    @RequestMapping(value = "api/eliminarSeguido/{id}", method = RequestMethod.DELETE)
+    public void eliminarSeguido(@RequestHeader(value = "Authorization") String token,
+                                 @PathVariable Long id){
+        String idUsuarioLogueado = jwtUtil.getKey(token);
+        UsuarioDao usuarioDao = new UsuarioDao();
+        if (idUsuarioLogueado == null){
+            return;
+        }
+        usuarioDao.eliminarSeguido(id,Long.parseLong(idUsuarioLogueado));
+    }
+
+    @RequestMapping(value = "api/seguirUsuario", method = RequestMethod.POST)
+    public ResponseEntity<String> empezarSeguir(@RequestHeader(value = "Authorization") String token,
+                                                @RequestBody Long id) {
+        String idUsuarioLogueado = jwtUtil.getKey(token);
+        if (idUsuarioLogueado == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autorizado.");
+        }
+        UsuarioDao usuarioDao = new UsuarioDao();
+        try {
+            usuarioDao.seguirUsuario(id, Long.parseLong(idUsuarioLogueado));
+            return ResponseEntity.ok("Ahora estás siguiendo al usuario.");
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Ya estás siguiendo a este usuario.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocurrió un error.");
+        }
+    }
+
 
 
 }

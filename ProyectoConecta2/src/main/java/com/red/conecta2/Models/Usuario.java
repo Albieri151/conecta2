@@ -16,7 +16,43 @@ public class Usuario {
     private String respuestaDeSeguridad;
     private String phone;
     private String fechaDeNacimiento;
+    private Integer edad;
+    private String userBuscado;
+    private Integer siguiendo;
+    private Integer seguidores;
+    private Integer publicaciones;
 
+    public Integer getSiguiendo() {
+        return siguiendo;
+    }
+
+    public void setSiguiendo(Integer siguiendo) {
+        this.siguiendo = siguiendo;
+    }
+
+    public Integer getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(Integer seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public Integer getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void setPublicaciones(Integer publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+
+    public String getUserBuscado() {
+        return userBuscado;
+    }
+
+    public void setUserBuscado(String userBuscado) {
+        this.userBuscado = userBuscado;
+    }
 
     public Usuario(){};
 
@@ -33,6 +69,14 @@ public class Usuario {
         this.respuestaDeSeguridad = respuestaDeSeguridad;
         this.phone = phone;
         this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(String fechaDeNacimiento) {
+        this.edad = calcularEdad(LocalDate.parse(fechaDeNacimiento));
     }
 
     public String getNombre() {
@@ -105,6 +149,11 @@ public class Usuario {
 
     public void setFechaDeNacimiento(String fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
+        try {
+            setEdad(fechaDeNacimiento);
+        } catch (Exception e) {
+            setEdad("2002-12-09");
+        }
     }
 
     public String getRespuestaDeSeguridad() {

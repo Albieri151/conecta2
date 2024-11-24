@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class LoginUsuarioController {
 
@@ -16,13 +18,16 @@ public class LoginUsuarioController {
     private JWTUtil jwtUtil;
 
     @RequestMapping(value = "api/loginUser", method = RequestMethod.POST)
-    public String iniciarSesion(@RequestBody Usuario usuario){
+    public ArrayList<String> iniciarSesion(@RequestBody Usuario usuario){
         UsuarioDao usuarioDao = new UsuarioDao();
         Usuario usuarioLogueado = usuarioDao.loguearUsuario(usuario);
 
         if(usuarioLogueado != null){
             String tokenJWT= jwtUtil.create(String.valueOf(usuarioLogueado.getId()),usuarioLogueado.getEmail());
-            return tokenJWT;
-        }else return"No esta registrado";
+            ArrayList<String> datosUsuario= new ArrayList<>();
+            datosUsuario.add(tokenJWT);
+            datosUsuario.add(usuarioLogueado.getUsuario());
+            return datosUsuario;
+        }else return null;
     }
 }

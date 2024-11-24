@@ -18,14 +18,16 @@ public class RegistroController {
 
     @RequestMapping(value = "registrar", method = RequestMethod.POST)
     public ResponseEntity<String> registroUsuario(@RequestBody Usuario usuario) {
+        System.out.println("Datos recibidos en el backend: " + usuario);
+
         IUsuarioDao usuarioDao = new UsuarioDao();
 
         try {
             usuarioDao.agregarUsuarios(usuario);
             return ResponseEntity.ok("Usuario registrado con éxito");
         } catch (DataIntegrityViolationException e) {
-            // Análisis del mensaje de error para determinar el conflicto
             String mensajeError = e.getMessage();
+            System.out.println("Error de integridad: " + mensajeError);
 
             if (mensajeError.contains("Usuario.email")) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -41,7 +43,7 @@ public class RegistroController {
                         .body("Ya existe un usuario con un valor único duplicado.");
             }
         } catch (Exception e) {
-            // Manejo general de errores
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error: No se pudo registrar el usuario. Por favor, intente más tarde.");
         }

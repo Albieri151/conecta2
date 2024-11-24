@@ -4,6 +4,7 @@ window.inicioSesion = async function () {
         password: document.getElementById("txtPassword").value,
     };
 
+
     try {
         const response = await fetch('api/loginUser', {
             method: 'POST',
@@ -21,22 +22,23 @@ window.inicioSesion = async function () {
         }
 
         // Supone que la respuesta es un JWT
-        const jwt = await response.text();
+        const jwt = await response.json();
 
         // Maneja el JWT recibido
-        if (jwt === "No esta registrado") {
+        if (jwt === null) {
             alert("El usuario no está registrado. Por favor, verifica tus credenciales.");
         } else {
             alert("¡Bienvenido de vuelta!");
-            localStorage.token = jwt;
-            localStorage.email = datos.email;
-            window.location.href = "/index.html";
+            localStorage.token = jwt[0];
+            localStorage.user = jwt[1];
+
+            window.location.href = "/blank.html";
         }
 
     } catch (error) {
         // Manejo centralizado de errores
         console.error("Error al iniciar sesión:", error);
-        alert("Hubo un problema al iniciar sesión: " + error.message);
+        alert("Hubo un problema al iniciar sesión, verifica tus credenciales estimado ");
     }
 };
 

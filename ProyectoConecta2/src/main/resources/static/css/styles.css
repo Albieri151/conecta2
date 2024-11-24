@@ -1,0 +1,484 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.npc-card,
+.profile-form {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 100%; /* Ancho completo por defecto */
+  max-width: 1200px; /* Limita el ancho en pantallas más grandes */
+  margin: 0 auto; /* Centra el contenido */
+}
+
+.npc-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap; /* Ajusta las estadísticas en varias filas si es necesario */
+}
+
+.stat {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  flex: 1; /* Ocupa espacio disponible */
+  min-width: 80px; /* Ancho mínimo para no deformarse */
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00bcd4;
+}
+
+.profile-form h3 {
+  margin-bottom: 20px;
+}
+
+.profile-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-form input,
+.profile-form select {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.profile-form button {
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.npc-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain; /* O 'cover' si quieres que llene el contenedor sin distorsión */
+  border-radius: 8px; /* Si necesitas esquinas redondeadas */
+}
+
+.search-results-container {
+  background-color: #f0f0f0; /* Fondo gris claro */
+  color: #333333; /* Texto en color gris oscuro */
+  border: 1px solid #dcdcdc; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  max-height: 300px; /* Altura máxima con desplazamiento */
+  overflow-y: auto; /* Desplazamiento si es necesario */
+  position: absolute; /* Posición absoluta */
+  width: 100%; /* Anchura total del input */
+  z-index: 1000; /* Asegúrate de que esté por encima */
+  padding: 10px; /* Espacio interior */
+  top: 100%; /* Muestra los resultados justo debajo del input */
+  left: 0; /* Alinea con el input */
+}
+
+.search-results-item {
+  padding: 8px 10px; /* Espaciado interno */
+  border-bottom: 1px solid #dcdcdc; /* Línea de separación */
+  cursor: pointer; /* Cursor al pasar */
+}
+
+.search-results-item:hover {
+  background-color: #e6e6e6; /* Fondo gris claro al pasar */
+}
+
+
+.search-results-item:last-child {
+  border-bottom: none; /* Elimina la línea de separación del último */
+}
+
+.profile-name {
+  font-size: 14px;
+}
+#search-results {
+    background-color: transparent; /* Hacer el fondo transparente al principio */
+    color: #555; /* Color de texto de los resultados para que contraste */
+    border: none;
+    position: absolute;
+    top: 100%; /* Aparecer justo debajo del input */
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Para asegurarse de que se muestre encima */
+    display: none; /* Ocultar por defecto */
+}
+
+#search-results div {
+    background-color: #f1f1f1; /* Color de fondo de cada resultado */
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Separador entre resultados */
+}
+
+#search-results div:hover {
+    background-color: #e1e1e1; /* Color de fondo al pasar el ratón */
+}
+
+.crear-publicacion {
+    width: 90%; /* Cambiar a porcentaje para que sea flexible */
+    max-width: 400px; /* Máximo ancho para pantallas grandes */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.nombre-usuario {
+    font-size: 18px; /* Tamaño adaptado */
+    font-weight: bold;
+    text-align: left;
+    color: #333;
+}
+
+.campo-texto {
+    width: 100%; /* Siempre ocupará todo el ancho del contenedor */
+    height: 100px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.campo-texto:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 5px rgba(24, 119, 242, 0.5);
+}
+
+.boton-publicar {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-publicar:hover {
+    background-color: #155db0;
+}
+
+.publicacion {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.info-publicacion {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.info-publicacion .fecha {
+    color: #888;
+    font-size: 12px;
+}
+
+.info-publicacion .autor {
+    font-weight: bold;
+    color: #333;
+}
+
+.contenido {
+    text-align: center;
+    font-size: 16px;
+    margin: 15px 0;
+    color: #333;
+}
+
+.acciones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.acciones button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.acciones button:hover {
+    background-color: #155db0;
+}
+
+.campo-comentario {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.campo-comentario textarea {
+    width: 100%;
+    height: 50px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.campo-comentario button {
+    align-self: flex-end;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+
+.campo-comentario button:hover {
+    background-color: #218838;
+}
+
+/* Media Queries para tamaños más pequeños */
+@media (max-width: 768px) {
+    .crear-publicacion {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        padding: 15px;
+    }
+
+    .nombre-usuario {
+        font-size: 16px; /* Reduce el tamaño de fuente */
+    }
+
+    .acciones {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .stats {
+        display: flex;
+        gap: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .botones {
+        display: flex;
+        gap: 10px;
+    }
+
+    .like-btn, .comentar-btn {
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+    }
+
+    .like-btn:hover, .comentar-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.3s;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .campo-texto {
+        height: 80px; /* Reduce la altura del textarea */
+        font-size: 13px; /* Ajusta el tamaño de la fuente */
+    }
+
+    .boton-publicar {
+        font-size: 14px; /* Reduce el tamaño del texto del botón */
+        padding: 8px; /* Ajusta el padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .crear-publicacion {
+        border-radius: 5px; /* Reduce el radio de borde */
+        padding: 10px; /* Menos espacio para pantallas pequeñas */
+    }
+
+    .nombre-usuario {
+        font-size: 14px; /* Más pequeño aún */
+    }
+
+    .campo-texto {
+        height: 60px; /* Altura menor */
+    }
+
+    .boton-publicar {
+        font-size: 12px; /* Texto más pequeño en el botón */
+        padding: 6px; /* Menos padding */
+    }
+}
+
+/* Estilos para cada publicación */
+.publicacion {
+    width: 90%;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.publicacion .info-publicacion {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #777;
+}
+
+.publicacion .contenido {
+    font-size: 16px;
+    color: #333;
+}
+
+.publicacion .acciones {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.publicacion .acciones button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.publicacion .acciones button:hover {
+    background-color: #155db0;
+}
+
+.publicacion .campo-comentario {
+    display: none;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.publicacion .campo-comentario textarea {
+    width: 100%;
+    height: 50px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.publicacion .campo-comentario button {
+    align-self: flex-end;
+    margin-top: 5px;
+}
+
+
+
+/* Media query para pantallas medianas */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .npc-card,
+  .profile-form {
+    width: 48%; /* Ocupa casi la mitad del contenedor */
+  }
+}
+
+/* Media query para pantallas grandes */
+@media (min-width: 1200px) {
+  .npc-card,
+  .profile-form {
+    width: 60%; /* Ocupa más espacio en pantallas grandes */
+    max-width: 800px; /* Limita el ancho máximo */
+  }
+}
