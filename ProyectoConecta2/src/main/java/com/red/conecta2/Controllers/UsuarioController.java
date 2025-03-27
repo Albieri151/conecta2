@@ -17,7 +17,7 @@ public class UsuarioController {
     @Autowired
     private JWTUtil jwtUtil;
 
-    @RequestMapping(value = "api/miPerfil", method = RequestMethod.GET)
+    @RequestMapping(value = "api/profile", method = RequestMethod.GET)
     public Usuario getPerfil(@RequestHeader(value = "Authorization") String token){
         String idUsuarioLogueado = jwtUtil.getKey(token);
         UsuarioDao usuarioDao = new UsuarioDao();

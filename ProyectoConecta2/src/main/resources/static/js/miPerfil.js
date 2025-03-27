@@ -56,7 +56,7 @@ async function updateProfileData() {
       phone: document.querySelector('input[placeholder="Teléfono"]').value
     };
 
-    const response = await fetch('api/miPerfil', {
+    const response = await fetch('api/profile', {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
